@@ -23,16 +23,17 @@ invoices - tupla com os índices dos invoices que o usuário deseja baixar
 
 
 ## Utilização do app
-1. Instalar as dependências:
+1. Criar ambiente, instalar as dependências e arquivo .env:
+> python3 -m venv venv
+> source venv/bin/activate
 > pip install -r requirements.txt
-2. Criar o arquivo .env:
-> cp .env .env.example
-3. Definir os parâmetros no final do arquivo main.py (opcional):
+> cp .env.example .env
+2. Alterar os parâmetros no final do arquivo main.py (opcional):
 > filme = "Avengers"
 > invoices = (2, 4)
-4. Executar a aplicação:
-> python3 main.py
-5. Aguarde a execução. Os resultados estarão na pasta "files":
+3. Executar a aplicação:
+> python3 src/main.py
+4. Aguarde a execução. Os resultados estarão na pasta "files":
 > Exemplo:
 > db_dump_20260418113412320212.csv
 > invoices_20260418113438040437.zip

@@ -28,9 +28,8 @@ class InvoiceService:
         self.driver.get("https://rpachallengeocr.azurewebsites.net")
         time.sleep(2)
 
-        # Criar a pasta files, caso não exista
+        # Acessa o endereço da pasta de arquivos temporários
         folder = os.getenv("FILES_FOLDER")
-        os.makedirs(folder, exist_ok=True)
 
         # Iterar pelos invoices encontrados e baixar os desejados
         file_paths = []

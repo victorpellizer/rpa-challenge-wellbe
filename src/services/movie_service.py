@@ -59,6 +59,7 @@ class MovieService:
                 continue
 
         folder = os.getenv("FILES_FOLDER")
+        os.makedirs(folder, exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
         csv_path = f"{folder}/db_dump_{timestamp}.csv"
 

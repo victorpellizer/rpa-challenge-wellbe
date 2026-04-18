@@ -1,34 +1,54 @@
 # rpa-challenge-wellbe
-> Repositório para demonstrar meu conhecimento de RPA desenvolvido em Python.
+Repositório para demonstrar meu conhecimento de RPA desenvolvido em Python.
 
-Esta automação acessa um site de filmes, extrai informações sobre estes filmes e as salva em banco. Depois, acessa outro site, baixa dois arquivos, e por fim os comprime em arquivo zip.
+Esta automação acessa um site de filmes, extrai informações sobre estes filmes, as salva em banco e então cria um csv com as informações extraídas. Depois, acessa outro site, baixa dois arquivos, e por fim os comprime em arquivo zip.
 
-## Parametros
+
+## Features v1.0
+1. Acessa o site https://rpachallenge.com
+2. Navega para a aba Movie Search
+3. Busca pelos filmes com a string query
+4. Salva no BD o nome e a descrição dos filmes encontrados, sem criar índices duplicados
+5. Cria um arquivo csv e o popula com um dump do BD
+6. Acessa o site https://rpachallengeocr.azurewebsites.net
+7. Busca os invoices descritos na tupla e realiza o download deles
+8. Cria um arquivo zip com os invoices baixados e por fim os apaga
+
+
+## Parâmetros
 A aplicação recebe dois parâmetros:
 
 query - string com o nome do filme que o usuário quer buscar
 invoices - tupla com os índices dos invoices que o usuário deseja baixar
 
-## Features na v1.0
-1. Acessa o site https://rpachallenge.com
-2. Navega para a aba Movie Search
-3. Busca pelos filmes com a string query
-4. Salva o nome e a descrição dos filmes encontrados, sem criar índices duplicados
-5. Acessa o site https://rpachallengeocr.azurewebsites.net
-6. Busca os invoices descritos na tupla e realiza o download deles
-7. Cria um arquivo zip com os invoices baixados e os apaga
+
+## Utilização do app
+1. Instalar as dependências:
+> pip install -r requirements.txt
+2. Criar o arquivo .env:
+> cp .env .env.example
+3. Definir os parâmetros no final do arquivo main.py (opcional):
+> filme = "Avengers"
+> invoices = (2, 4)
+4. Executar a aplicação:
+> python3 main.py
+5. Aguarde a execução. Os resultados estarão na pasta "files":
+> Exemplo:
+> db_dump_20260418113412320212.csv
+> invoices_20260418113438040437.zip
+
 
 ## Funções SQL
-### 1 - Criar DB
-CREATE DATABASE rpa_db;
-### 2 - Criar usuário específico
-CREATE USER 'rpa_user'@'localhost' IDENTIFIED BY 'strong_password';
-### 3 - Dá permissões ao usuário
-GRANT ALL PRIVILEGES ON rpa_db.* TO 'rpa_user'@'localhost';
-FLUSH PRIVILEGES;
-### 4 - Criar tabela
-USE rpa_db;
-CREATE TABLE movies (
+1. Criar DB
+> CREATE DATABASE rpa_db;
+2. Criar usuário específico
+> CREATE USER 'rpa_user'@'localhost' IDENTIFIED BY 'strong_password';
+3. Dá permissões ao usuário
+> GRANT ALL PRIVILEGES ON rpa_db.* TO 'rpa_user'@'localhost';
+> FLUSH PRIVILEGES;
+4. Criar tabela
+> USE rpa_db;
+> CREATE TABLE movies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     movie_name VARCHAR(255),
     description VARCHAR(500) UNIQUE

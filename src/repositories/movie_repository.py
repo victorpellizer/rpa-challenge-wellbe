@@ -32,5 +32,5 @@ class MovieRepository:
         return db_get_all(
             db=self.db,
             table="movies",
-            fields="movie_name, description"
+            fields="id, movie_name, description, created_at"
         )

@@ -1,5 +1,6 @@
 from datetime import datetime
 import csv
+import os
 import time
 
 from selenium import webdriver
@@ -57,17 +58,13 @@ class MovieService:
                 print(f"Erro ao processar filme: {e}")
                 continue
 
+        folder = os.getenv("FILES_FOLDER")
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
-        extracted_movies = self.repository.get_all()
+        csv_path = f"{folder}/db_dump_{timestamp}.csv"
 
-        print("Estou aqui")
-        with open("output.csv", "w", newline="", encoding="utf-8") as f:
+        extracted_movies = self.repository.get_all()
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["movie_name", "description"])
+            writer.writerow(["id","movie_name", "description","created_at"])
             for row in extracted_movies:
                 writer.writerow(row)
-        print("Estou aqui")
-        # create_file(
-        #     filename=f"movies_dump_{timestamp}.txt",
-        #     content=",".join(extracted_movies)
-        # )

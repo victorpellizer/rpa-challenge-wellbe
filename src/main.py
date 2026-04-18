@@ -4,9 +4,6 @@ from selenium import webdriver
 
 from factories import build_movie_service, build_invoice_service
 
-# Criar interface gráfica para input de query e invoices
-# interface para visualizar quais dados foram inseridos no BD
-
 def main(query: str, invoices: Iterable[int]) -> None:
     driver = webdriver.Chrome()
     movie_service = build_movie_service(driver)
